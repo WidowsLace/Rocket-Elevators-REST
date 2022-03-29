@@ -20,13 +20,21 @@ https://docs.microsoft.com/en-us/azure/devops/pipelines/targets/deploy-to-azure-
 **In the code, you will be able to use the API to do the following:**
 
 Retrieve the current status of a specific Battery
+
 Change the status of a specific Battery
+
 Retrieve the current status of a specific Column
+
 Change the status of a specific Column
+
 Retrieve the current status of a specific Elevator
+
 Change the status of a specific Elevator
+
 Retrieve a list of Elevators that are not in operation at the time of the request
+
 Retrieve a list of Buildings that contain at least one battery, column or elevator requiring intervention
+
 Retrieve a list of Leads created in the last 30 days who have not yet become customers.
 
 
