@@ -42,6 +42,35 @@ namespace RestAPI.Controllers
             return elevator;
         }
 
+        // GET: api/Elevator/5/Status
+        [HttpGet("{id}/Status")]
+        public async Task<ActionResult<string>> GetElevatorStatus(long id)
+        {
+            var elevator = await _context.Elevators.FindAsync(id);
+
+            if (elevator == null)
+            {
+                return NotFound();
+            }
+
+            return elevator.Status;
+        }
+
+        // GET: api/Elevator/Broken
+        // Returns list of elevators with status not equal to "Running"
+        [HttpGet("Broken")]
+        public async Task<ActionResult<IEnumerable<Elevator>>> Getbrokenelevators()
+        {
+            var elevators = await _context.Elevators.Where(e => e.Status != "Running").ToListAsync();
+
+            if (elevators == null)
+            {
+                return NotFound();
+            }
+
+            return elevators;
+        }
+
         // PUT: api/Elevator/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -53,6 +82,39 @@ namespace RestAPI.Controllers
             }
 
             _context.Entry(elevator).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ElevatorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/Elevator/5/Status
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}/Status")]
+        public async Task<IActionResult> PutElevatorStatus(long id, [FromBody] Elevator elevatorUpdate)
+        {
+            var elevator = await _context.Elevators.FindAsync(id);
+
+            if (elevator == null)
+            {
+                return NotFound();
+            }
+
+            elevator.Status = elevatorUpdate.Status;
 
             try
             {
