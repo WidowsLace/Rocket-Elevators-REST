@@ -1113,12 +1113,20 @@
           "runtimes/win-arm/lib/net6.0/dotnet-aspnet-codegenerator-design.exe": {
             "rid": "win-arm",
             "assetType": "runtime",
+<<<<<<< HEAD
             "fileVersion": "0.0.0.0"
+=======
+            "fileVersion": "6.0.222.10402"
+>>>>>>> origin/troy
           },
           "runtimes/win-arm64/lib/net6.0/dotnet-aspnet-codegenerator-design.exe": {
             "rid": "win-arm64",
             "assetType": "runtime",
+<<<<<<< HEAD
             "fileVersion": "0.0.0.0"
+=======
+            "fileVersion": "6.0.222.10402"
+>>>>>>> origin/troy
           }
         }
       },

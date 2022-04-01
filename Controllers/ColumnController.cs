@@ -42,6 +42,20 @@ namespace RestAPI.Controllers
             return column;
         }
 
+        // GET: api/Column/5/Status
+        [HttpGet("{id}/Status")]
+        public async Task<ActionResult<string>> GetColumnStatus(long id)
+        {
+            var column = await _context.Columns.FindAsync(id);
+
+            if (column == null)
+            {
+                return NotFound();
+            }
+
+            return column.Status;
+        }
+
         // PUT: api/Column/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -53,6 +67,39 @@ namespace RestAPI.Controllers
             }
 
             _context.Entry(column).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ColumnExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/Column/5/Status
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}/Status")]
+        public async Task<IActionResult> PutColumnStatus(long id, [FromBody] Column columnUpdate)
+        {
+            var column = await _context.Columns.FindAsync(id);
+
+            if (column == null)
+            {
+                return NotFound();
+            }
+
+            column.Status = columnUpdate.Status;
 
             try
             {
