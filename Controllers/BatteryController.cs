@@ -42,6 +42,20 @@ namespace RestAPI.Controllers
             return battery;
         }
 
+        // GET: api/Battery/5/Status
+        [HttpGet("{id}/Status")]
+        public async Task<ActionResult<string>> GetColumnStatus(long id)
+        {
+            var battery = await _context.Batteries.FindAsync(id);
+
+            if (battery == null)
+            {
+                return NotFound();
+            }
+
+            return battery.Status;
+        }
+
         // PUT: api/Battery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -53,6 +67,39 @@ namespace RestAPI.Controllers
             }
 
             _context.Entry(battery).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BatteryExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+        
+        // PUT: api/Battery/5/Status
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}/Status")]
+        public async Task<IActionResult> PutBatteryStatus(long id, [FromBody] Battery batteryUpdate)
+        {
+            var battery = await _context.Batteries.FindAsync(id);
+
+            if (battery == null)
+            {
+                return NotFound();
+            }
+
+            battery.Status = batteryUpdate.Status;
 
             try
             {
