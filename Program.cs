@@ -4,7 +4,8 @@ using RestAPI.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = "server=localhost; port = 3306; database = weverMysql; user = wevertr; password = 3090";
+
 builder.Services.AddDbContext<myapp_developmentContext>(options =>
                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

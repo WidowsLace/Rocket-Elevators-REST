@@ -42,6 +42,29 @@ namespace RestAPI.Controllers
             return building;
         }
 
+        // GET: api/Building/interventions
+        // Returns list of leads with status not equal to "Running"
+        [HttpGet("interventions")]
+        public async Task<ActionResult<IEnumerable<Building>>> Getnotcustomers()
+        {
+            var innerJoinQuery =
+                from building in _context.Buildings
+                from battery in building.Batteries
+                from column in battery.Columns
+                from elevator in column.Elevators
+                where battery.Status.Equals("Intervention") || column.Status.Equals("Intervention") || elevator.Status.Equals("Intervention")
+                // join battery in _context.Batteries on building.Id equals battery.BuildingId where battery.Status == "intervention"
+                // join column in _context.Columns on battery.Id equals column.BatteryId where column.Status == "intervention"
+                // join elevator in _context.Elevators on column.Id equals elevator.ColumnId where elevator.Status == "intervention"
+                select building;
+
+            var distinctBuildings = (
+                from building in innerJoinQuery
+                select building).Distinct();
+            
+            return await distinctBuildings.ToListAsync();
+        }
+
         // PUT: api/Building/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

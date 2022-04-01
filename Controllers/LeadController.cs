@@ -42,6 +42,24 @@ namespace RestAPI.Controllers
             return lead;
         }
 
+        // GET: api/Lead/notcustomer
+        // Returns list of leads with status not equal to "Running"
+        [HttpGet("notcustomer")]
+        public async Task<ActionResult<IEnumerable<Lead>>> Getnotcustomers()
+        {
+            var leads = _context.Leads.Where(l => l.contact_request_date >= DateTime.Now.AddDays(-30)).ToList();
+            var customers = _context.Customers.Where(c => c.creation_date >= DateTime.Now.AddDays(-30)).ToList();
+            var list = customers.Join(leads, x => x.CompanyContactEmail, y => y.Email, (x, y) => y).ToList();
+    
+
+            // var customers = _context.customers.Where(l => l.contact_request_date >= DateTime.Now.AddDays(-30)).ToList();
+            if (leads == null)
+            {
+                return NotFound();
+            }
+            return list;
+        }
+
         // PUT: api/Lead/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
