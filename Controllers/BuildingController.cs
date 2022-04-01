@@ -45,7 +45,7 @@ namespace RestAPI.Controllers
         // GET: api/Building/interventions
         // Returns list of leads with status not equal to "Running"
         [HttpGet("interventions")]
-        public async Task<ActionResult<IEnumerable<Building>>> Getnotcustomers()
+        public async Task<ActionResult<IEnumerable<Building>>> GetInterventions()
         {
             var innerJoinQuery =
                 from building in _context.Buildings
@@ -53,9 +53,6 @@ namespace RestAPI.Controllers
                 from column in battery.Columns
                 from elevator in column.Elevators
                 where battery.Status.Equals("Intervention") || column.Status.Equals("Intervention") || elevator.Status.Equals("Intervention")
-                // join battery in _context.Batteries on building.Id equals battery.BuildingId where battery.Status == "intervention"
-                // join column in _context.Columns on battery.Id equals column.BatteryId where column.Status == "intervention"
-                // join elevator in _context.Elevators on column.Id equals elevator.ColumnId where elevator.Status == "intervention"
                 select building;
 
             var distinctBuildings = (

@@ -49,10 +49,8 @@ namespace RestAPI.Controllers
         {
             var leads = _context.Leads.Where(l => l.contact_request_date >= DateTime.Now.AddDays(-30)).ToList();
             var customers = _context.Customers.Where(c => c.creation_date >= DateTime.Now.AddDays(-30)).ToList();
-            var list = customers.Join(leads, x => x.CompanyContactEmail, y => y.Email, (x, y) => y).ToList();
-    
-
-            // var customers = _context.customers.Where(l => l.contact_request_date >= DateTime.Now.AddDays(-30)).ToList();
+            var list = leads.ExceptBy(customers.Select(ce => ce.CompanyContactEmail), le => le.Email).ToList();
+            
             if (leads == null)
             {
                 return NotFound();
