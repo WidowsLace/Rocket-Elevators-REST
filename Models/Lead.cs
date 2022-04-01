@@ -15,7 +15,7 @@ namespace RestAPI.Models
         public string? Department { get; set; }
         public string? Message { get; set; }
         public byte[]? AttachedFile { get; set; }
-        public string? ContactRequestDate { get; set; }
+        public DateTime contact_request_date { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

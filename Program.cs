@@ -4,7 +4,8 @@ using RestAPI.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = "server=codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com; port = 3306; database = MichaelDamico; user = codeboxx; password = Codeboxx1!";
+
 builder.Services.AddDbContext<myapp_developmentContext>(options =>
                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

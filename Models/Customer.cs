@@ -11,7 +11,7 @@ namespace RestAPI.Models
         }
 
         public long Id { get; set; }
-        public string? CreationDate { get; set; }
+        public DateTime creation_date { get; set; }
         public string? CompanyName { get; set; }
         public string? CompanyContactName { get; set; }
         public string? CompanyContactPhone { get; set; }

@@ -280,8 +280,8 @@ namespace RestAPI.Models
                     .HasColumnType("datetime")
                     .HasColumnName("created_at");
 
-                entity.Property(e => e.CreationDate)
-                    .HasMaxLength(255)
+                entity.Property(e => e.creation_date)
+                    .HasColumnType("datetime")
                     .HasColumnName("creation_date");
 
                 entity.Property(e => e.TeachnicalAuthorityEmail)
@@ -431,8 +431,8 @@ namespace RestAPI.Models
                     .HasMaxLength(255)
                     .HasColumnName("contact_name");
 
-                entity.Property(e => e.ContactRequestDate)
-                    .HasMaxLength(255)
+                entity.Property(e => e.contact_request_date)
+                    .HasColumnType("datetime")
                     .HasColumnName("contact_request_date");
 
                 entity.Property(e => e.CreatedAt)
