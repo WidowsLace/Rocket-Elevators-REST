@@ -54,3 +54,6 @@ dkms.conf
 appsettings.json
 obj/
 bin/
+
+# Startup settings with connection string
+program.cs
