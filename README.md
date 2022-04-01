@@ -1,58 +1,75 @@
-# Rocket-Elevators-REST
+# Rocket Elevators REST API
 
-**In this week, we learned how to:**
+In this week, we learned how to:
 
-Create a web API project.
-Add a model class and a database context.
-Scaffold a controller with CRUD methods.
-Configure routing, URL paths, and return values.
-Call the web API with Postman.
+Create a web API project
 
-**We did this by following this documentation:**
+Add a model class and a database context
 
-https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code
+Scaffold a controller with CRUD methods
 
-and 
+Configure routing, URL paths, and return values
 
-https://docs.microsoft.com/en-us/azure/devops/pipelines/targets/deploy-to-azure-vscode?view=azure-devops
+Call the web API with Postman
 
+## Installation
 
-**In the code, you will be able to use the API to do the following:**
+Use the [heroku](https://dashboard.heroku.com/apps) platform to deploy.
 
-Retrieve the current status of a specific Battery
+Since we used c# as our language, you will have to add the c# buildpack. 
 
-GET https://rocket-elevators-rest-2022.herokuapp.com/api/battery/1/status
+```bash
+heroku buildpacks:set jincod/dotnetcore
+```
 
-Change the status of a specific Battery
+## Usage
 
-PUT https://rocket-elevators-rest-2022.herokuapp.com/api/battery/1
+Click on the links to view and change the statuses.
 
-Retrieve the current status of a specific Column
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/battery/1/status) 
+ the current status of a specific Battery
 
-GET https://rocket-elevators-rest-2022.herokuapp.com/api/column/1/status
+[PUT](https://rocket-elevators-rest-2022.herokuapp.com/api/battery/1)
+ the status of a specific Battery
 
-Change the status of a specific Column
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/column/1/status)
+the current status of a specific Column
 
-PUT https://rocket-elevators-rest-2022.herokuapp.com/api/column/1
+[PUT](https://rocket-elevators-rest-2022.herokuapp.com/api/column/1)
+ the status of a specific Column
 
-Retrieve the current status of a specific Elevator
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/1/status)
+the current status of a specific Elevator
 
-GET https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/1/status
+[PUT](https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/1)
+the status of a specific Elevator
 
-Change the status of a specific Elevator
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/broken)
+a list of Elevators that are not in operation at the time of the request
 
-PUT https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/1
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/building/interventions)
+a list of Buildings that contain at least one battery, column or elevator requiring intervention
 
-Retrieve a list of Elevators that are not in operation at the time of the request
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/lead/notcustomer)
+ a list of Leads created in the last 30 days who have not yet become customers.
 
-GET https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/broken
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Retrieve a list of Buildings that contain at least one battery, column or elevator requiring intervention
+Please make sure to update tests as appropriate.
 
-GET https://rocket-elevators-rest-2022.herokuapp.com/api/building/interventions
+## Members
+Michael D'Amico
 
-Retrieve a list of Leads created in the last 30 days who have not yet become customers.
+Troy Wever
 
-GET https://rocket-elevators-rest-2022.herokuapp.com/api/lead/notcustomer
+Hayleigh Hevener
 
-**put more here after finishing the project
+## Documentation 
+We used the following websites to build this project:
+
+[microsoft web api docs](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code)
+
+[heroku docs](https://devcenter.heroku.com/categories/reference)
+
+[Microsoft LINQ Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries)
