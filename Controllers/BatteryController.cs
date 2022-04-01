@@ -21,26 +21,26 @@ namespace RestAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Battery
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Battery>>> GetBatteries()
-        {
-            return await _context.Batteries.ToListAsync();
-        }
+        // // GET: api/Battery
+        // [HttpGet]
+        // public async Task<ActionResult<IEnumerable<Battery>>> GetBatteries()
+        // {
+        //     return await _context.Batteries.ToListAsync();
+        // }
 
-        // GET: api/Battery/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Battery>> GetBattery(long id)
-        {
-            var battery = await _context.Batteries.FindAsync(id);
+        // // GET: api/Battery/5
+        // [HttpGet("{id}")]
+        // public async Task<ActionResult<Battery>> GetBattery(long id)
+        // {
+        //     var battery = await _context.Batteries.FindAsync(id);
 
-            if (battery == null)
-            {
-                return NotFound();
-            }
+        //     if (battery == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return battery;
-        }
+        //     return battery;
+        // }
 
         // GET: api/Battery/5/Status
         [HttpGet("{id}/Status")]
@@ -58,38 +58,38 @@ namespace RestAPI.Controllers
 
         // PUT: api/Battery/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBattery(long id, Battery battery)
-        {
-            if (id != battery.Id)
-            {
-                return BadRequest();
-            }
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> PutBattery(long id, Battery battery)
+        // {
+        //     if (id != battery.Id)
+        //     {
+        //         return BadRequest();
+        //     }
 
-            _context.Entry(battery).State = EntityState.Modified;
+        //     _context.Entry(battery).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BatteryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!BatteryExists(id))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
         
         // PUT: api/Battery/5/Status
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}/Status")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutBatteryStatus(long id, [FromBody] Battery batteryUpdate)
         {
             var battery = await _context.Batteries.FindAsync(id);
@@ -122,30 +122,30 @@ namespace RestAPI.Controllers
 
         // POST: api/Battery
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Battery>> PostBattery(Battery battery)
-        {
-            _context.Batteries.Add(battery);
-            await _context.SaveChangesAsync();
+        // [HttpPost]
+        // public async Task<ActionResult<Battery>> PostBattery(Battery battery)
+        // {
+        //     _context.Batteries.Add(battery);
+        //     await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBattery", new { id = battery.Id }, battery);
-        }
+        //     return CreatedAtAction("GetBattery", new { id = battery.Id }, battery);
+        // }
 
-        // DELETE: api/Battery/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBattery(long id)
-        {
-            var battery = await _context.Batteries.FindAsync(id);
-            if (battery == null)
-            {
-                return NotFound();
-            }
+        // // DELETE: api/Battery/5
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteBattery(long id)
+        // {
+        //     var battery = await _context.Batteries.FindAsync(id);
+        //     if (battery == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            _context.Batteries.Remove(battery);
-            await _context.SaveChangesAsync();
+        //     _context.Batteries.Remove(battery);
+        //     await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
         private bool BatteryExists(long id)
         {

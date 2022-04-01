@@ -22,25 +22,25 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/Elevator
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Elevator>>> GetElevators()
-        {
-            return await _context.Elevators.ToListAsync();
-        }
+        // [HttpGet]
+        // public async Task<ActionResult<IEnumerable<Elevator>>> GetElevators()
+        // {
+        //     return await _context.Elevators.ToListAsync();
+        // }
 
-        // GET: api/Elevator/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Elevator>> GetElevator(long id)
-        {
-            var elevator = await _context.Elevators.FindAsync(id);
+        // // GET: api/Elevator/5
+        // [HttpGet("{id}")]
+        // public async Task<ActionResult<Elevator>> GetElevator(long id)
+        // {
+        //     var elevator = await _context.Elevators.FindAsync(id);
 
-            if (elevator == null)
-            {
-                return NotFound();
-            }
+        //     if (elevator == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return elevator;
-        }
+        //     return elevator;
+        // }
 
         // GET: api/Elevator/5/Status
         [HttpGet("{id}/Status")]
@@ -73,38 +73,38 @@ namespace RestAPI.Controllers
 
         // PUT: api/Elevator/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutElevator(long id, Elevator elevator)
-        {
-            if (id != elevator.Id)
-            {
-                return BadRequest();
-            }
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> PutElevator(long id, Elevator elevator)
+        // {
+        //     if (id != elevator.Id)
+        //     {
+        //         return BadRequest();
+        //     }
 
-            _context.Entry(elevator).State = EntityState.Modified;
+        //     _context.Entry(elevator).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ElevatorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!ElevatorExists(id))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
         // PUT: api/Elevator/5/Status
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}/Status")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutElevatorStatus(long id, [FromBody] Elevator elevatorUpdate)
         {
             var elevator = await _context.Elevators.FindAsync(id);
@@ -137,30 +137,30 @@ namespace RestAPI.Controllers
 
         // POST: api/Elevator
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Elevator>> PostElevator(Elevator elevator)
-        {
-            _context.Elevators.Add(elevator);
-            await _context.SaveChangesAsync();
+        // [HttpPost]
+        // public async Task<ActionResult<Elevator>> PostElevator(Elevator elevator)
+        // {
+        //     _context.Elevators.Add(elevator);
+        //     await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetElevator", new { id = elevator.Id }, elevator);
-        }
+        //     return CreatedAtAction("GetElevator", new { id = elevator.Id }, elevator);
+        // }
 
-        // DELETE: api/Elevator/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteElevator(long id)
-        {
-            var elevator = await _context.Elevators.FindAsync(id);
-            if (elevator == null)
-            {
-                return NotFound();
-            }
+        // // DELETE: api/Elevator/5
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteElevator(long id)
+        // {
+        //     var elevator = await _context.Elevators.FindAsync(id);
+        //     if (elevator == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            _context.Elevators.Remove(elevator);
-            await _context.SaveChangesAsync();
+        //     _context.Elevators.Remove(elevator);
+        //     await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
         private bool ElevatorExists(long id)
         {

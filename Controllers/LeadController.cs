@@ -22,25 +22,25 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/Lead
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Lead>>> GetLeads()
-        {
-            return await _context.Leads.ToListAsync();
-        }
+        // [HttpGet]
+        // public async Task<ActionResult<IEnumerable<Lead>>> GetLeads()
+        // {
+        //     return await _context.Leads.ToListAsync();
+        // }
 
-        // GET: api/Lead/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Lead>> GetLead(long id)
-        {
-            var lead = await _context.Leads.FindAsync(id);
+        // // GET: api/Lead/5
+        // [HttpGet("{id}")]
+        // public async Task<ActionResult<Lead>> GetLead(long id)
+        // {
+        //     var lead = await _context.Leads.FindAsync(id);
 
-            if (lead == null)
-            {
-                return NotFound();
-            }
+        //     if (lead == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return lead;
-        }
+        //     return lead;
+        // }
 
         // GET: api/Lead/notcustomer
         // Returns list of leads with status not equal to "Running"
@@ -60,61 +60,61 @@ namespace RestAPI.Controllers
 
         // PUT: api/Lead/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLead(long id, Lead lead)
-        {
-            if (id != lead.Id)
-            {
-                return BadRequest();
-            }
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> PutLead(long id, Lead lead)
+        // {
+        //     if (id != lead.Id)
+        //     {
+        //         return BadRequest();
+        //     }
 
-            _context.Entry(lead).State = EntityState.Modified;
+        //     _context.Entry(lead).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LeadExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!LeadExists(id))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
-        // POST: api/Lead
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Lead>> PostLead(Lead lead)
-        {
-            _context.Leads.Add(lead);
-            await _context.SaveChangesAsync();
+        // // POST: api/Lead
+        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // [HttpPost]
+        // public async Task<ActionResult<Lead>> PostLead(Lead lead)
+        // {
+        //     _context.Leads.Add(lead);
+        //     await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLead", new { id = lead.Id }, lead);
-        }
+        //     return CreatedAtAction("GetLead", new { id = lead.Id }, lead);
+        // }
 
-        // DELETE: api/Lead/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLead(long id)
-        {
-            var lead = await _context.Leads.FindAsync(id);
-            if (lead == null)
-            {
-                return NotFound();
-            }
+        // // DELETE: api/Lead/5
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteLead(long id)
+        // {
+        //     var lead = await _context.Leads.FindAsync(id);
+        //     if (lead == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            _context.Leads.Remove(lead);
-            await _context.SaveChangesAsync();
+        //     _context.Leads.Remove(lead);
+        //     await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
         private bool LeadExists(long id)
         {
